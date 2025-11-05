@@ -1,1 +1,113 @@
-import 'package:flutter/material.dart';\nimport 'screens/home_screen.dart';\nimport 'screens/products_screen.dart';\nimport 'screens/categories_screen.dart';\nimport 'screens/cart_screen.dart';\nimport 'screens/profile_screen.dart';\n\nvoid main() {\n  runApp(const DragonApp());\n}\n\nclass DragonApp extends StatelessWidget {\n  const DragonApp({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      title: 'Dragon - Premium Products',\n      debugShowCheckedModeBanner: false,\n      theme: ThemeData(\n        primaryColor: const Color(0xFF1a1a2e),\n        scaffoldBackgroundColor: const Color(0xFFf5f5f5),\n        colorScheme: ColorScheme.fromSeed(\n          seedColor: const Color(0xFF0f3460),\n          primary: const Color(0xFF0f3460),\n          secondary: const Color(0xFFe94560),\n        ),\n        appBarTheme: const AppBarTheme(\n          backgroundColor: Color(0xFF1a1a2e),\n          elevation: 0,\n          centerTitle: true,\n        ),\n        useMaterial3: true,\n      ),\n      home: const MainNavigationScreen(),\n      routes: {\n        '/home': (context) => const MainNavigationScreen(),\n      },\n    );\n  }\n}\n\nclass MainNavigationScreen extends StatefulWidget {\n  const MainNavigationScreen({super.key});\n\n  @override\n  State<MainNavigationScreen> createState() => _MainNavigationScreenState();\n}\n\nclass _MainNavigationScreenState extends State<MainNavigationScreen> {\n  int _selectedIndex = 0;\n\n  final List<Widget> _screens = [\n    const HomeScreen(),\n    const ProductsScreen(),\n    const CategoriesScreen(),\n    const CartScreen(),\n    const ProfileScreen(),\n  ];\n\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      body: _screens[_selectedIndex],\n      bottomNavigationBar: Container(\n        decoration: BoxDecoration(\n          boxShadow: [\n            BoxShadow(\n              color: Colors.black.withOpacity(0.1),\n              blurRadius: 10,\n              offset: const Offset(0, -5),\n            ),\n          ],\n        ),\n        child: BottomNavigationBar(\n          currentIndex: _selectedIndex,\n          onTap: (index) {\n            setState(() {\n              _selectedIndex = index;\n            });\n          },\n          type: BottomNavigationBarType.fixed,\n          selectedItemColor: const Color(0xFFe94560),\n          unselectedItemColor: Colors.grey,\n          backgroundColor: Colors.white,\n          elevation: 0,\n          items: const [\n            BottomNavigationBarItem(\n              icon: Icon(Icons.home_rounded),\n              label: 'Home',\n            ),\n            BottomNavigationBarItem(\n              icon: Icon(Icons.shopping_bag_rounded),\n              label: 'Products',\n            ),\n            BottomNavigationBarItem(\n              icon: Icon(Icons.category_rounded),\n              label: 'Categories',\n            ),\n            BottomNavigationBarItem(\n              icon: Icon(Icons.shopping_cart_rounded),\n              label: 'Cart',\n            ),\n            BottomNavigationBarItem(\n              icon: Icon(Icons.person_rounded),\n              label: 'Profile',\n            ),\n          ],\n        ),\n      ),\n    );\n  }\n}
+import 'package:flutter/material.dart';
+import 'screens/home_screen.dart';
+import 'screens/products_screen.dart';
+import 'screens/categories_screen.dart';
+import 'screens/cart_screen.dart';
+import 'screens/profile_screen.dart';
+
+void main() {
+  runApp(const DragonApp());
+}
+
+class DragonApp extends StatelessWidget {
+  const DragonApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Dragon - Premium Products',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: const Color(0xFF1a1a2e),
+        scaffoldBackgroundColor: const Color(0xFFf5f5f5),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF0f3460),
+          primary: const Color(0xFF0f3460),
+          secondary: const Color(0xFFe94560),
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF1a1a2e),
+          elevation: 0,
+          centerTitle: true,
+        ),
+        useMaterial3: true,
+      ),
+      home: const MainNavigationScreen(),
+      routes: {
+        '/home': (context) => const MainNavigationScreen(),
+      },
+    );
+  }
+}
+
+class MainNavigationScreen extends StatefulWidget {
+  const MainNavigationScreen({super.key});
+
+  @override
+  State<MainNavigationScreen> createState() => _MainNavigationScreenState();
+}
+
+class _MainNavigationScreenState extends State<MainNavigationScreen> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    const ProductsScreen(),
+    const CategoriesScreen(),
+    const CartScreen(),
+    const ProfileScreen(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 10,
+              offset: const Offset(0, -5),
+            ),
+          ],
+        ),
+        child: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          onTap: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: const Color(0xFFe94560),
+          unselectedItemColor: Colors.grey,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_rounded),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_bag_rounded),
+              label: 'Products',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.category_rounded),
+              label: 'Categories',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart_rounded),
+              label: 'Cart',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_rounded),
+              label: 'Profile',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
